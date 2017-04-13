@@ -30,4 +30,9 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.facebook.fresco:fresco:1.2.0'
     compile 'com.android.support:design:25.1.0'
+    compile 'com.android.support:recyclerview-v7:25.1.0'
+    compile 'com.zhy:okhttputils:2.6.2'
+    compile 'com.alibaba:fastjson:1.1.54.android'
+    compile 'com.youth.banner:banner:1.4.9'
+    compile 'com.zhy:magic-viewpager:1.0.1'
 }

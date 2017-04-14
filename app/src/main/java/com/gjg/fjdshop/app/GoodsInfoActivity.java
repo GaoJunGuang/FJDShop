@@ -1,6 +1,7 @@
 package com.gjg.fjdshop.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.gjg.fjdshop.R;
 import com.gjg.fjdshop.ui.home.bean.GoodsBean;
+import com.gjg.fjdshop.ui.shoppingcart.activity.ShoppingCartActivity;
+import com.gjg.fjdshop.ui.shoppingcart.utils.CartStorage;
 import com.gjg.fjdshop.utils.Constants;
 
 import static com.gjg.fjdshop.R.id.iv_good_info_image;
@@ -102,14 +105,17 @@ public class GoodsInfoActivity extends Activity implements View.OnClickListener 
             Toast.makeText(this, "更多", Toast.LENGTH_SHORT).show();
         } else if (v == btnGoodInfoAddcart) {
             // Handle clicks for btnGoodInfoAddcart
-            //CartStorage.getInstance().addData(goodsBean);
-            Toast.makeText(this, "添加到成功了", Toast.LENGTH_SHORT).show();
+            CartStorage.getInstance().addData(goodsBean);
+            Toast.makeText(this, "成功加入购物车", Toast.LENGTH_SHORT).show();
         } else if (v == tvGoodInfoCallcenter) {
             Toast.makeText(this, "客户中心", Toast.LENGTH_SHORT).show();
         } else if (v == tvGoodInfoCollection) {
             Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
         } else if (v == tvGoodInfoCart) {
             Toast.makeText(this, "购物车", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this, ShoppingCartActivity.class);
+            startActivity(intent);
+
         } else if (v == tv_more_share) {
             Toast.makeText(this, "分享", Toast.LENGTH_SHORT).show();
         } else if (v == tv_more_search) {

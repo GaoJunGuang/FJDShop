@@ -1,15 +1,17 @@
 package com.gjg.fjdshop.ui.category.fragment;
 
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.flyco.tablayout.SegmentTabLayout;
+import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.gjg.fjdshop.R;
 import com.gjg.fjdshop.base.BaseFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +41,64 @@ public class CategoryFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
+        initFragment();
 
+        String[] titles = {"分类", "标签"};
+
+        segmentTabLayout.setTabData(titles);
+
+        segmentTabLayout.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                switchFragment(tempFragment, fragmentList.get(position));
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        switchFragment(tempFragment, fragmentList.get(0));
+    }
+
+    public void switchFragment(Fragment fromFragment, BaseFragment nextFragment) {
+        if (tempFragment != nextFragment) {
+            tempFragment = nextFragment;
+            if (nextFragment != null) {
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                //判断nextFragment是否添加
+                if (!nextFragment.isAdded()) {
+                    //隐藏当前Fragment
+                    if (fromFragment != null) {
+                        transaction.hide(fromFragment);
+                    }
+
+                    transaction.add(R.id.fl_type, nextFragment, "tagFragment").commit();
+                } else {
+                    //隐藏当前Fragment
+                    if (fromFragment != null) {
+                        transaction.hide(fromFragment);
+                    }
+                    transaction.show(nextFragment).commit();
+                }
+            }
+        }
+    }
+
+    private void initFragment() {
+        fragmentList = new ArrayList<>();
+        listFragment = new ListFragment();
+        tagFragment = new TagFragment();
+
+        fragmentList.add(listFragment);
+        fragmentList.add(tagFragment);
+
+        switchFragment(tempFragment, fragmentList.get(0));
     }
 }

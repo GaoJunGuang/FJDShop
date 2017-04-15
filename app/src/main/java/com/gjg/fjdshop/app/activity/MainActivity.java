@@ -39,7 +39,6 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         ButterKnife.bind(this);
         /**
          * 初始化Fragment
@@ -101,6 +100,7 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void switchFragment(Fragment fromFragment, Fragment nextFragment) {
+        //tempFragment一开始为空
         if (tempFragment != nextFragment) {
             tempFragment = nextFragment;
             if (nextFragment != null) {
@@ -111,9 +111,10 @@ public class MainActivity extends FragmentActivity {
                     if (fromFragment != null) {
                         transaction.hide(fromFragment);
                     }
+                    //没添加过就添加
                     transaction.add(R.id.frameLayout, nextFragment).commit();
                 } else {
-                    //隐藏当前Fragment
+                    //隐藏当前Fragment，在显示要显示的
                     if (fromFragment != null) {
                         transaction.hide(fromFragment);
                     }
@@ -124,7 +125,8 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initFragment() {
-        fragments = new ArrayList<>();
+        fragments = new ArrayList<>(5);
+        //按顺序添加
         fragments.add(new HomeFragment());
         fragments.add(new CategoryFragment());
         fragments.add(new CommunityFragment());

@@ -27,8 +27,6 @@ public class FJDActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: 2017/4/9  添加友盟代理
-
         doSomeAction();
 
     }

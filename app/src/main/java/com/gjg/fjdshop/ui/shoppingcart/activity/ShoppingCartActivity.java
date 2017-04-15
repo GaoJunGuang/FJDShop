@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gjg.fjdshop.R;
-import com.gjg.fjdshop.ui.activity.MainActivity;
+import com.gjg.fjdshop.app.activity.MainActivity;
 import com.gjg.fjdshop.ui.home.bean.GoodsBean;
 import com.gjg.fjdshop.ui.shoppingcart.adapter.ShoppingCartAdapter;
 import com.gjg.fjdshop.ui.shoppingcart.utils.CartStorage;

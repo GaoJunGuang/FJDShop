@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">山寨JD商城</string>
-    <string name="app_introduce">山寨JD商城</string>
+    <string name="app_name">手机JD商城</string>
+    <string name="app_introduce">手机JD商城</string>
     <string name="author_info">当年明月GG</string>
     <string name="immediatelyEnter">立即进入</string>
     <string name="login">登录</string>
@@ -11,4 +11,5 @@
     <string name="icon_discover">分类</string>
     <string name="icon_cart">购物车</string>
     <string name="icon_user">我的</string>
+    <string name="zhucexieyi">注册账号</string>
 </resources>

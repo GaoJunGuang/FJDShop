@@ -48,6 +48,7 @@ public class SecondKillRecyclerViewAdapter extends RecyclerView.Adapter<SecondKi
         Glide.with(mContext).load(Constants.BASE_URL_IMAGE+listBean.getFigure()).into(holder.iv_figure);
         holder.tv_cover_price.setText("￥"+listBean.getCover_price());
         holder.tv_origin_price.setText("￥"+listBean.getOrigin_price());
+        holder.tv_origin_price.setTextSize(12);
     }
 
 

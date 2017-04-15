@@ -16,7 +16,7 @@
         android:layout_above="@+id/point_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dip"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/goComing"

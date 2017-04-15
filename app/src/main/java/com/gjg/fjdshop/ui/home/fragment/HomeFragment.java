@@ -54,7 +54,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public View initView() {
         View view = View.inflate(mContext, R.layout.fragment_home, null);
-        unbinder =ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         //设置点击事件
         initListener();
         return view;
@@ -110,7 +110,7 @@ public class HomeFragment extends BaseFragment {
                      */
                     @Override
                     public void onError(okhttp3.Call call, Exception e, int id) {
-                        Log.e(TAG,"首页请求失败=="+e.getMessage());
+                        //Log.e(TAG, "首页请求失败==" + e.getMessage());
                     }
 
                     /**
@@ -120,7 +120,7 @@ public class HomeFragment extends BaseFragment {
                      */
                     @Override
                     public void onResponse(String response, int id) {
-                        Log.e(TAG,"首页请求成功=="+response);
+                        //Log.e(TAG, "首页请求成功==" + response);
                         //解析数据
                         processData(response);
                     }
@@ -130,22 +130,22 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void processData(String json) {
-        ResultBeanData resultBeanData = JSON.parseObject(json,ResultBeanData.class);
+        ResultBeanData resultBeanData = JSON.parseObject(json, ResultBeanData.class);
         resultBean = resultBeanData.getResult();
-        if(resultBean != null){
+        if (resultBean != null) {
             //有数据
             //设置适配器
-            adapter = new HomeFragmentAdapter(mContext,resultBean);
+            adapter = new HomeFragmentAdapter(mContext, resultBean);
             rvHome.setAdapter(adapter);
-            GridLayoutManager manager =  new GridLayoutManager(mContext,1);
+            GridLayoutManager manager = new GridLayoutManager(mContext, 1);
             //设置跨度大小监听
             manager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    if(position <= 3){
+                    if (position <= 3) {
                         //隐藏
                         ibTop.setVisibility(View.GONE);
-                    }else{
+                    } else {
                         //显示
                         ibTop.setVisibility(View.VISIBLE);
                     }
@@ -156,10 +156,10 @@ public class HomeFragment extends BaseFragment {
             //设置布局管理者
             rvHome.setLayoutManager(manager);
 
-        }else{
+        } else {
             //没有数据
         }
-        Log.e(TAG,"解析成功=="+resultBean.getHot_info().get(0).getName());
+        Log.e(TAG, "解析成功==" + resultBean.getHot_info().get(0).getName());
     }
 
 

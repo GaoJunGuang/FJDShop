@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.fragment.UserFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ui.user.fragment.UserFragment">
 
 
     <ScrollView
@@ -16,21 +17,20 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:background="#f00">
+                android:background="#f95757">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="170dp"
-                    android:background="@drawable/new_user_icon_background" />
 
-                <ImageButton
+                <com.facebook.drawee.view.SimpleDraweeView
                     android:id="@+id/ib_user_icon_avator"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/new_user_icon" />
+                    app:failureImage="@drawable/default_icon"
+                    app:placeholderImage="@drawable/default_icon"
+                    app:roundAsCircle="true"
+                     />
 
                 <TextView
                     android:id="@+id/tv_username"

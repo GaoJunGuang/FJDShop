@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -476,6 +477,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
             HotGridViewAdapter  adapter = new HotGridViewAdapter(mContext,hot_info);
             gv_hot.setAdapter(adapter);
 
+            Log.d("hot_info",hot_info+"");
 
             //设置item的监听
             gv_hot.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -490,7 +492,6 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
                     goodsBean.setFigure(hotInfoBean.getFigure());
                     goodsBean.setName(hotInfoBean.getName());
                     goodsBean.setProduct_id(hotInfoBean.getProduct_id());
-
 
                     startGoodsInfoActivity(goodsBean);
                 }

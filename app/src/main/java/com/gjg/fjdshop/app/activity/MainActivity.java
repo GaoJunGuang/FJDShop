@@ -1,4 +1,4 @@
-package com.gjg.fjdshop.ui.activity;
+package com.gjg.fjdshop.app.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

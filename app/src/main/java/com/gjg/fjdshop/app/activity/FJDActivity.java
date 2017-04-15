@@ -1,4 +1,4 @@
-package com.gjg.fjdshop.ui.activity;
+package com.gjg.fjdshop.app.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

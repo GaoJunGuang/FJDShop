@@ -60,6 +60,8 @@ public class HomeFragment extends BaseFragment {
         return view;
     }
 
+
+
     private void initListener() {
         //置顶的监听
         ibTop.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +99,24 @@ public class HomeFragment extends BaseFragment {
 
     private void getDataFromNet() {
         String url = Constants.HOME_URL;
+
+
+//        OkHttpClient client=new OkHttpClient();
+//        Request request= new Request.Builder().url(url).build();
+//        okhttp3.Call call=client.newCall(request);
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                //Log.e(TAG, "首页请求成功==" + response.body().string());
+//                processData(response.body().string());
+//            }
+//        });
+
         OkHttpUtils
                 .get()
                 .url(url)
@@ -120,7 +140,7 @@ public class HomeFragment extends BaseFragment {
                      */
                     @Override
                     public void onResponse(String response, int id) {
-                        //Log.e(TAG, "首页请求成功==" + response);
+                        Log.e(TAG, "首页请求成功==" + response);
                         //解析数据
                         processData(response);
                     }

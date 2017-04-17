@@ -6,5 +6,5 @@
 
 app运行效果：
 
-![首页](../screenshot/123.gif)
-![购物车](../screenshot/234.gif)
+![首页](123.gif)
+![购物车](234.gif)

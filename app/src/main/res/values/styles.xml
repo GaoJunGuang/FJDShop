@@ -11,7 +11,8 @@
     <style name="AppTheme.NoActionBar" parent="AppTheme">
 
         <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="MainButtonStyle">
@@ -29,8 +30,8 @@
 
     <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
 
-        <item name="tabMaxWidth">52dp</item>
-        <item name="tabMinWidth">52dp</item>
+        <item name="tabMaxWidth">56dp</item>
+        <item name="tabMinWidth">56dp</item>
         <item name="tabIndicatorColor">#ff0000</item>
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>

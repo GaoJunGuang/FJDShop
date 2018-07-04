@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.gjg.fjdshop.R;
 import com.gjg.fjdshop.base.BaseFragment;
@@ -132,5 +134,21 @@ public class MainActivity extends FragmentActivity {
         fragments.add(new CommunityFragment());
         fragments.add(new ShoppingCartFragment());
         fragments.add(new UserFragment());
+    }
+
+    private long firstTime=0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+            long secondTime=System.currentTimeMillis();
+            if(secondTime-firstTime>1000){
+                Toast.makeText(this,"再按一次退出程序",Toast.LENGTH_SHORT).show();
+                firstTime=secondTime;
+                return true;
+            }else {
+                finish();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

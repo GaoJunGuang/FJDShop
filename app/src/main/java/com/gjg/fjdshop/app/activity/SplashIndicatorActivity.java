@@ -1,9 +1,9 @@
 package com.gjg.fjdshop.app.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class SplashIndicatorActivity extends AppCompatActivity implements View.OnClickListener {
+public class SplashIndicatorActivity extends Activity implements View.OnClickListener {
 
     @BindView(R.id.viewPager)
     ViewPager viewPager;

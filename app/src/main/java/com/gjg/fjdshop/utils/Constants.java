@@ -9,7 +9,7 @@ package com.gjg.fjdshop.utils;
 public class Constants {
 
     //public static final String BASE_URL = "http://192.168.0.103:8080/atguigu";
-    public static final String BASE_URL = "http://192.168.0.102:8080/atguigu";
+    public static final String BASE_URL = "http://192.168.0.101:8080/atguigu";
 
     /**
      * 主页面的路径

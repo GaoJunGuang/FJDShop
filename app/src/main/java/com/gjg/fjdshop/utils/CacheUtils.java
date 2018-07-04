@@ -31,6 +31,6 @@ public class CacheUtils {
      */
     public static void saveString(Context context, String key,String value) {
         SharedPreferences sp = context.getSharedPreferences("shoppingcart",Context.MODE_PRIVATE);
-        sp.edit().putString(key,value).commit();
+        sp.edit().putString(key,value).apply();
     }
 }

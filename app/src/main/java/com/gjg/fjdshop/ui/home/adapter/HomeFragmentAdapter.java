@@ -35,6 +35,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by JunGuang_Gao
@@ -88,22 +89,22 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if(viewType==BANNER){
-            View itemView=mLayoutInflater.inflate(R.layout.banner_viewpager,null);
+            View itemView=mLayoutInflater.inflate(R.layout.banner_viewpager,parent,false);
             return new BannerViewHolder(itemView,mContext);
         }else if(viewType==CHANNEL){
-            View itemView=mLayoutInflater.inflate(R.layout.channel_item,null);
+            View itemView=mLayoutInflater.inflate(R.layout.channel_item,parent,false);
             return new ChannelViewHolder(itemView,mContext);
         }else if(viewType==ACT){
-            View itemView=mLayoutInflater.inflate(R.layout.act_item,null);
+            View itemView=mLayoutInflater.inflate(R.layout.act_item,parent,false);
             return new ActivityViewHolder(itemView,mContext);
         }else if(viewType==SECKILL){
-            View itemView=mLayoutInflater.inflate(R.layout.seckill_item,null);
+            View itemView=mLayoutInflater.inflate(R.layout.seckill_item,parent,false);
             return new SecondKillViewHolder(itemView,mContext);
         }else if(viewType==RECOMMEND){
-            View itemView=mLayoutInflater.inflate(R.layout.recommend_item,null);
+            View itemView=mLayoutInflater.inflate(R.layout.recommend_item,parent,false);
             return new RecommendViewHolder(itemView,mContext);
         }else if(viewType==HOT){
-            View itemView=mLayoutInflater.inflate(R.layout.hot_item,null);
+            View itemView=mLayoutInflater.inflate(R.layout.hot_item,parent,false);
             return new HotViewHolder(itemView,mContext);
         }
         return null;
@@ -334,6 +335,27 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
         }
     }
 
+    /*private MyHandler handler=new MyHandler();
+    private long dt = 0;
+    private static class MyHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            dt = dt - 1000;
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
+            String time = formatter.format(new Date(dt));
+            tv_time_seckill.setText(time);
+
+            handler.removeMessages(0);
+            handler.sendEmptyMessageDelayed(0,1000);
+            if(dt <=0){
+                //把消息移除
+                handler.removeCallbacksAndMessages(null);
+            }
+        }
+    }*/
+
+
     private class SecondKillViewHolder extends RecyclerView.ViewHolder {
         private final Context mContext;
         private TextView tv_time_seckill;
@@ -345,13 +367,12 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter {
          * 相差多少时间-毫秒
          */
         private long dt = 0;
-
         private Handler handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 dt = dt - 1000;
-                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss", Locale.CHINA);
                 String time = formatter.format(new Date(dt));
                 tv_time_seckill.setText(time);
 

@@ -89,7 +89,7 @@ public class SecondKillRecyclerViewAdapter extends RecyclerView.Adapter<SecondKi
          * 当某条被点击的时候回调
          * @param position
          */
-        public void onItemClick(int position);
+         void onItemClick(int position);
     }
 
     private  OnSecondKillRecyclerViewListener onSecondKillRecyclerViewListener;

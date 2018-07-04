@@ -2,6 +2,7 @@ package com.gjg.fjdshop.ui.shoppingcart.fragment;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,7 @@ import com.gjg.fjdshop.ui.shoppingcart.pay.SignUtils;
 import com.gjg.fjdshop.ui.shoppingcart.utils.CartStorage;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.ref.WeakReference;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -242,7 +244,17 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
 
     private static final int SDK_PAY_FLAG = 1;
 
-    private Handler mHandler = new Handler() {
+    private  MyHandler mHandler = new MyHandler(mContext);
+
+    static class MyHandler extends Handler{
+        //弱引用<引用外部类>
+        WeakReference<Context> mActivity;
+
+        MyHandler(Context activity) {
+            //构造创建弱引用
+            mActivity = new WeakReference<Context>(activity);
+        }
+
         @SuppressWarnings("unused")
         public void handleMessage(Message msg) {
             switch (msg.what) {
@@ -258,16 +270,16 @@ public class ShoppingCartFragment extends BaseFragment implements View.OnClickLi
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mActivity.get(), "支付成功", Toast.LENGTH_SHORT).show();
                     } else {
                         // 判断resultStatus 为非"9000"则代表可能支付失败
                         // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                         if (TextUtils.equals(resultStatus, "8000")) {
-                            Toast.makeText(mContext, "支付结果确认中", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mActivity.get(), "支付结果确认中", Toast.LENGTH_SHORT).show();
 
                         } else {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                            Toast.makeText(mContext, "支付失败", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mActivity.get(), "支付失败", Toast.LENGTH_SHORT).show();
 
                         }
                     }

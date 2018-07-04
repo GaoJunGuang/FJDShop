@@ -4,6 +4,8 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,9 +19,16 @@ import com.gjg.fjdshop.utils.Constants;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.StringCallback;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 import static com.gjg.fjdshop.R.id.ib_top;
 
@@ -34,7 +43,7 @@ public class HomeFragment extends BaseFragment {
     private static final String TAG = HomeFragment.class.getSimpleName();
 
     @BindView(R.id.tv_search_home)
-    TextView tvSearchHome;
+    EditText etSearchHome;
     @BindView(R.id.tv_message_home)
     TextView tvMessageHome;
     @BindView(R.id.rv_home)
@@ -57,9 +66,10 @@ public class HomeFragment extends BaseFragment {
         unbinder = ButterKnife.bind(this, view);
         //设置点击事件
         initListener();
+
+
         return view;
     }
-
 
 
     private void initListener() {
@@ -73,7 +83,7 @@ public class HomeFragment extends BaseFragment {
         });
 
         //搜素的监听
-        tvSearchHome.setOnClickListener(new View.OnClickListener() {
+        etSearchHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "搜索", Toast.LENGTH_SHORT).show();
@@ -92,30 +102,37 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
+        //隐藏软键盘
+        getActivity().getWindow().setSoftInputMode( WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         //联网请求主页的数据
         getDataFromNet();
 
+
+
+
     }
+
+
 
     private void getDataFromNet() {
         String url = Constants.HOME_URL;
 
 
-//        OkHttpClient client=new OkHttpClient();
-//        Request request= new Request.Builder().url(url).build();
-//        okhttp3.Call call=client.newCall(request);
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                //Log.e(TAG, "首页请求成功==" + response.body().string());
-//                processData(response.body().string());
-//            }
-//        });
+        OkHttpClient client=new OkHttpClient();
+        Request request= new Request.Builder().url(url).build();
+        okhttp3.Call call=client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //Log.e(TAG, "首页请求成功==" + response.body().string());
+                processData(response.body().string());
+            }
+        });
 
         OkHttpUtils
                 .get()

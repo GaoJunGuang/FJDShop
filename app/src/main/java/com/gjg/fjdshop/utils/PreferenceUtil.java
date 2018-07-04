@@ -35,6 +35,6 @@ public class PreferenceUtil {
         SharedPreferences sharedPreferences=context.getSharedPreferences(fileName,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key,writeBoolean);
-        editor.commit();
+        editor.apply();
     }
 }
